@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rigidbody2d;
     public float MovementSpeed;
     public float JumpHeight;
+    private bool doubleJump;
+
+    // GroundCheck
+    public LayerMask WhatIsGround;
+    public float GroundRadiusCheck;
+    private bool isGrounded;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +21,15 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // Camera follows player position
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+        // Ground check
+        isGrounded = Physics2D.OverlapCircle(transform.position,GroundRadiusCheck,WhatIsGround);
+
+        if (isGrounded)
+        {
+            doubleJump = false;
+        }
 
         if (rigidbody2d.velocity.x > 0)
         {
@@ -36,9 +50,21 @@ public class PlayerController : MonoBehaviour {
             rigidbody2d.velocity = new Vector2(-MovementSpeed, rigidbody2d.velocity.y);
         }
 
-        if (Input.GetAxisRaw("Jump") != 0)
+        if (Input.GetButtonDown("Jump"))
         {
-            rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, JumpHeight);
+            if (isGrounded)
+            {
+                doubleJump = false;
+                rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, JumpHeight);
+            }
+            else
+            {
+                if (!doubleJump)
+                {
+                    doubleJump = true;
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, JumpHeight);
+                }
+            }      
         }
 #endif
     }
