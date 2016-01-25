@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c30f5c2e1f2bb984e9de3401de519077
-timeCreated: 1453578732
+timeCreated: 1453686118
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,7 @@ TextureImporter:
     21300012: spritesheet_losttower_6
     21300014: spritesheet_losttower_7
     21300016: spritesheet_losttower_8
+    21300018: spritesheet_losttower_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -151,6 +152,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: spritesheet_losttower_9
+      rect:
+        serializedVersion: 2
+        x: 16
         y: 16
         width: 16
         height: 16
